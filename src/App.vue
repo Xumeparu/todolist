@@ -1,27 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="app">
+    <AddingForm />
+    <Filter />
+    <List />
+  </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+<script>
+import AddingForm from "./components/AddingForm";
+import Filter from "./components/Filter";
+import List from "./components/List";
 
-@Options({
+export default {
+  name: "App",
   components: {
-    HelloWorld,
+    AddingForm,
+    Filter,
+    List,
   },
-})
-export default class App extends Vue {}
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app {
+  font-family: "Consolas", serif;
+  font-size: 12pt;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 2%;
 }
 </style>
