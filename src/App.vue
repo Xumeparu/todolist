@@ -6,10 +6,10 @@
   </div>
 </template>
 
-<script>
-import AddingForm from "./components/AddingForm";
-import Filter from "./components/Filter";
-import List from "./components/List";
+<script lang="ts">
+import AddingForm from "./components/AddingForm.vue";
+import Filter from "./components/Filter.vue";
+import List from "./components/List.vue";
 
 export default {
   name: "App",

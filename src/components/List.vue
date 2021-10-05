@@ -6,8 +6,8 @@
   </div>
 </template>
 
-<script>
-import Item from "./Item";
+<script lang="ts">
+import Item from "./Item.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

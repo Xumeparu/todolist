@@ -51,6 +51,14 @@ export default createStore({
         }),
       ];
     },
+    editItem: (state: AppStore, payload: { id: string; title: string }) => {
+      state.items = state.items.map(function (item) {
+        if (item.id === payload.id) {
+          return { ...item, title: payload.title };
+        }
+        return item;
+      });
+    },
     changeFilterByOption(state: AppStore, payload: FILTER_OPTIONS) {
       state.filterByOption = payload;
     },
