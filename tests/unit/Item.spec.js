@@ -3,8 +3,9 @@ import Item from "../../src/components/Item";
 
 describe("Тестирование Item.vue", () => {
   const item = {
-    id: "gkbhrlehb",
-    title: "Меркурий",
+    id: "0",
+    title: "Mercury",
+    isChecked: false,
   };
 
   it("Компонент выводит item.title", async () => {
