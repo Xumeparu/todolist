@@ -1,4 +1,9 @@
-import { FILTER_OPTIONS, getters, initialState } from "../../src/store/store";
+import {
+  FILTER_OPTIONS,
+  initialState,
+  mutations,
+  getters,
+} from "../../src/store/store";
 import { createStore } from "vuex";
 
 const items = [
@@ -18,6 +23,48 @@ const items = [
     isChecked: false,
   },
 ];
+
+describe("Тестирование mutations", () => {
+  const newItem = "Stay alive";
+  let store;
+
+  beforeEach(() => {
+    store = createStore({
+      state() {
+        return { ...initialState };
+      },
+      mutations,
+    });
+  });
+
+  it("addItem добавляет элемент в список", () => {
+    store.commit("addItem", newItem);
+    expect(store.state.items.length).toBe(1);
+  });
+
+  it("deleteItem удаляет элемент из списка", () => {
+    store.commit("addItem", newItem);
+    expect(store.state.items.length).toBe(1);
+    store.commit("deleteItem", store.state.items[0].id);
+    expect(store.state.items.length).toBe(0);
+  });
+
+  it("changeChecked меняет флаг элемента выполнен/не выполнен", () => {
+    store.commit("addItem", newItem);
+    expect(store.state.items[0].isChecked).toBe(false);
+    store.commit("changeChecked", store.state.items[0].id);
+    expect(store.state.items[0].isChecked).toBe(true);
+  });
+
+  it("editItem изменяет title элемента с определенным id", () => {
+    store.commit("addItem", newItem);
+    const id = store.state.items[0].id;
+    const newTitle = "Stay indoors";
+    store.commit("editItem", { id: id, title: newTitle });
+    expect(store.state.items[0].id).toEqual(id);
+    expect(store.state.items[0].title).toEqual(newTitle);
+  });
+});
 
 describe("Тестирование getters", () => {
   it("filterByOption возвращает список всех дел", () => {
@@ -112,7 +159,9 @@ describe("Тестирование getters", () => {
     };
 
     const store = createStore({
-      state: testState,
+      state() {
+        return testState;
+      },
       getters,
     });
 
@@ -130,7 +179,9 @@ describe("Тестирование getters", () => {
     };
 
     const store = createStore({
-      state: testState,
+      state() {
+        return testState;
+      },
       getters,
     });
 

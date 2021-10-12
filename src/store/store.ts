@@ -31,7 +31,7 @@ export const mutations: MutationTree<RootState> = {
       title: payload,
       isChecked: false,
     };
-    state.items.push(newItem);
+    state.items = [...state.items, newItem];
   },
   deleteItem: (state: RootState, payload: string): void => {
     state.items = state.items.filter((item) => item.id !== payload);
