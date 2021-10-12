@@ -24,7 +24,7 @@ export const initialState: RootState = {
   substring: "",
 };
 
-const mutations: MutationTree<RootState> = {
+export const mutations: MutationTree<RootState> = {
   addItem: (state: RootState, payload: string): void => {
     const newItem = {
       id: Math.random().toString(36).substr(2),
@@ -65,8 +65,8 @@ const mutations: MutationTree<RootState> = {
   },
 };
 
-const getters: GetterTree<RootState, RootState> = {
-  filterByOption: (state: RootState) => {
+export const getters: GetterTree<RootState, RootState> = {
+  filterByOption(state: RootState) {
     if (state.filterByOption === FILTER_OPTIONS.DONE) {
       return state.items.filter((item) => item.isChecked);
     }
@@ -92,7 +92,7 @@ const getters: GetterTree<RootState, RootState> = {
     );
   },
   itemsCount(state: RootState, getters) {
-    return getters.filteredList(state).length;
+    return getters.filteredList.length;
   },
 };
 
