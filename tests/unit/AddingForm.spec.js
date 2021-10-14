@@ -1,19 +1,27 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import AddingForm from "../../src/components/AddingForm";
 
 describe("Тестирование AddingForm.vue", () => {
-  it("Компонент добавляет элемент", async () => {
-    const title = "Земля";
-    const addItem = jest.fn();
-    const wrapper = mount(AddingForm, {
-      props: { addItem },
+  it("Компонент вызывает мутацию 'addItem'", () => {
+    const title = "Stay alive";
+    const $store = {
+      state: {},
+      commit: jest.fn(),
+    };
+    const wrapper = shallowMount(AddingForm, {
+      global: {
+        mocks: {
+          $store,
+        },
+      },
     });
+
     const input = wrapper.find("input");
     const form = wrapper.find("form");
 
-    await input.setValue(title);
-    await form.trigger("submit");
-    expect(addItem).toBeCalledWith(title);
-    expect(input.element.value).toBe("");
+    input.element.value = title;
+    input.trigger("input");
+    form.trigger("submit");
+    expect($store.commit).toBeCalledWith("addItem", title);
   });
 });

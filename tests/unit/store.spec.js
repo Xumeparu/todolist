@@ -1,10 +1,10 @@
+import { createStore } from "vuex";
 import {
   FILTER_OPTIONS,
   initialState,
   mutations,
   getters,
 } from "../../src/store/store";
-import { createStore } from "vuex";
 
 const items = [
   {
