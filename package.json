@@ -86,6 +86,10 @@
     "coverageReporters": [
       "lcov",
       "text"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/App",
+      "src/main"
     ]
   }
 }

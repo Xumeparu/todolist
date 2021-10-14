@@ -44,16 +44,18 @@ describe("Тестирование mutations", () => {
 
   it("deleteItem удаляет элемент из списка", () => {
     store.commit("addItem", newItem);
+    const id = store.state.items[0].id;
     expect(store.state.items.length).toBe(1);
-    store.commit("deleteItem", store.state.items[0].id);
+    store.commit("deleteItem", id);
     expect(store.state.items.length).toBe(0);
   });
 
   it("changeChecked меняет флаг элемента выполнен/не выполнен", () => {
     store.commit("addItem", newItem);
-    expect(store.state.items[0].isChecked).toBe(false);
-    store.commit("changeChecked", store.state.items[0].id);
-    expect(store.state.items[0].isChecked).toBe(true);
+    const id = store.state.items[0].id;
+    expect(store.state.items[0].isChecked).not.toBeTruthy();
+    store.commit("changeChecked", id);
+    expect(store.state.items[0].isChecked).toBeTruthy();
   });
 
   it("editItem изменяет title элемента с определенным id", () => {
@@ -63,6 +65,20 @@ describe("Тестирование mutations", () => {
     store.commit("editItem", { id: id, title: newTitle });
     expect(store.state.items[0].id).toEqual(id);
     expect(store.state.items[0].title).toEqual(newTitle);
+  });
+
+  it("changeFilterByOption изменяет isChecked элемента", () => {
+    store.commit("addItem", newItem);
+    const option = FILTER_OPTIONS.NOT_DONE;
+    store.commit("changeFilterByOption", option);
+    expect(store.state.items[0].isChecked).not.toBeTruthy();
+  });
+
+  it("searchSubstring устанавливает вводимую substring", () => {
+    store.commit("addItem", newItem);
+    const substring = "alive";
+    store.commit("searchSubstring", substring);
+    expect(store.state.items[0].title).toContain(substring);
   });
 });
 
