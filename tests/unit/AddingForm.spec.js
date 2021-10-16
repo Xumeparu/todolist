@@ -8,6 +8,7 @@ describe("Тестирование AddingForm.vue", () => {
       state: {},
       commit: jest.fn(),
     };
+
     const wrapper = shallowMount(AddingForm, {
       global: {
         mocks: {

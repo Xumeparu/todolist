@@ -14,6 +14,7 @@
       <div v-show="editMode">
         <input
           class="editInput"
+          :value="editInput"
           @change="(e) => (this.editInput = e.target.value)"
         />
         <button class="saveBtn" @click="saveHandler">&#10004;</button>
@@ -31,7 +32,7 @@ export default defineComponent({
   data() {
     return {
       editMode: false,
-      editInput: "",
+      editInput: this.item.title,
     };
   },
   props: {
@@ -43,15 +44,10 @@ export default defineComponent({
   methods: {
     changeChecked() {
       this.$store.commit("changeChecked", this.item.id);
+      console.log(this.editInput);
     },
     deleteItem() {
       this.$store.commit("deleteItem", this.item.id);
-    },
-    editItem() {
-      this.$store.commit("editItem", {
-        id: this.item.id,
-        title: this.item.title,
-      });
     },
     saveHandler() {
       this.editMode = false;
