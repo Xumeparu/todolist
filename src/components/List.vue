@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="itemsUl">
+    <ul class="item">
       <Item v-for="(item, index) in items" :key="index" :item="item" />
     </ul>
   </div>
@@ -22,7 +22,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.itemsUl {
+.item {
   list-style-type: none;
 }
 </style>
