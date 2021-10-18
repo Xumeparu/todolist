@@ -1,5 +1,8 @@
 <template>
-  <div>Your tasks: {{ itemsCount }}</div>
+  <div>
+    Your tasks:
+    <span class="numberOfItems">{{ itemsCount }}</span>
+  </div>
 </template>
 
 <script>
