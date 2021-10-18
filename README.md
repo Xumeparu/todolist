@@ -1,5 +1,17 @@
 # todolist
 
+## Laboratory work №1
+
+A simple todolist with the ability to add, delete and change list items 
+and with the ability to filter the list according to certain criteria.
+
+### Technologies
+* Vue
+* VueX
+* Тесты
+* Линтер
+* TypeScript
+
 ## Project setup
 ```
 npm install
@@ -20,15 +32,7 @@ npm run build
 npm run test:unit
 ```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
